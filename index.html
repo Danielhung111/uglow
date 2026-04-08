@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UGLOW｜臉部科技保養</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+TC:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:    #FFFFFF;
+      --cream:    #FAF8F5;
+      --beige:    #F2EDE6;
+      --skin:     #E8D9CC;
+      --sand:     #D4BFA8;
+      --warm:     #C5A88C;
+      --brown:    #8B6F5A;
+      --dark:     #2C2420;
+      --text:     #4A3C35;
+      --sub:      #8A7B74;
+      --gold:     #C9A96E;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', 'Noto Serif TC', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 60px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212,191,168,0.25);
+      transition: all .3s ease;
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      color: var(--dark);
+      text-decoration: none;
+    }
+    .nav-logo span {
+      font-style: italic;
+      color: var(--warm);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--warm); }
+
+    .nav-cta {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--white);
+      background: var(--dark);
+      padding: 10px 24px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--brown); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding-top: 80px;
+    }
+
+    .hero-content {
+      padding: 80px 60px 80px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero-tag {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--warm);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--warm);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 5vw, 68px);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--warm);
+    }
+
+    .hero-subtitle {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--sub);
+      letter-spacing: 0.1em;
+      margin-bottom: 32px;
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      color: var(--sub);
+      line-height: 2;
+      max-width: 400px;
+      margin-bottom: 48px;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      color: var(--white);
+      background: var(--dark);
+      padding: 16px 36px;
+      text-decoration: none;
+      transition: all .25s;
+    }
+    .btn-primary:hover {
+      background: var(--brown);
+      transform: translateY(-1px);
+    }
+    .btn-primary svg { width: 16px; height: 16px; }
+
+    .btn-outline {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--sand);
+      padding-bottom: 2px;
+      transition: all .2s;
+    }
+    .btn-outline:hover {
+      color: var(--warm);
+      border-color: var(--warm);
+    }
+
+    .hero-visual {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background: var(--beige);
+    }
+
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    /* Fallback gradient if image not loaded */
+    .hero-img-fallback {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, var(--skin) 0%, var(--beige) 40%, var(--cream) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 48px;
+      left: 40px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(8px);
+      padding: 20px 28px;
+      border-left: 3px solid var(--warm);
+    }
+    .hero-badge .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1;
+    }
+    .hero-badge .label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--sub);
+      margin-top: 4px;
+    }
+
+    /* ── ANNOUNCEMENT STRIP ── */
+    .strip {
+      background: var(--dark);
+      color: var(--skin);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-align: center;
+      padding: 14px;
+      overflow: hidden;
+    }
+    .strip-inner {
+      display: inline-flex;
+      gap: 80px;
+      white-space: nowrap;
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 100px 80px; }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--warm);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--warm);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 3.5vw, 50px);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--dark);
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--warm);
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-text { max-width: 480px; }
+    .about-text p {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 2;
+      margin-top: 24px;
+      letter-spacing: 0.03em;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--skin);
+    }
+    .stat-box {
+      background: var(--white);
+      padding: 40px 36px;
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1;
+    }
+    .stat-unit {
+      font-size: 14px;
+      color: var(--warm);
+      margin-left: 4px;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--sub);
+      letter-spacing: 0.08em;
+      margin-top: 8px;
+    }
+
+    /* ── SERVICES ── */
+    .services { background: var(--white); }
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+    }
+
+    .service-card {
+      background: var(--beige);
+      padding: 48px 36px;
+      transition: all .3s ease;
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--warm);
+      transform: scaleX(0);
+      transition: transform .3s ease;
+      transform-origin: left;
+    }
+    .service-card:hover {
+      background: var(--skin);
+      transform: translateY(-4px);
+    }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      font-size: 18px;
+    }
+
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      color: var(--warm);
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .service-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .service-desc {
+      font-size: 13px;
+      color: var(--sub);
+      line-height: 1.9;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── FEATURE BANNER ── */
+    .feature-banner {
+      background: var(--dark);
+      padding: 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .feature-banner .section-label { color: var(--sand); }
+    .feature-banner .section-label::before { background: var(--sand); }
+    .feature-banner .section-title { color: var(--white); }
+    .feature-banner .section-title em { color: var(--gold); }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .feature-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .feature-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+    .feature-text h4 {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--cream);
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+    }
+    .feature-text p {
+      font-size: 13px;
+      color: var(--sub);
+      line-height: 1.8;
+    }
+
+    .feature-right {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 48px;
+    }
+    .feature-right blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .feature-right cite {
+      font-size: 12px;
+      color: var(--sub);
+      letter-spacing: 0.1em;
+      font-style: normal;
+    }
+
+    /* ── REVIEWS ── */
+    .reviews { background: var(--cream); }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 60px;
+    }
+
+    .review-card {
+      background: var(--white);
+      padding: 40px 36px;
+      border-bottom: 1px solid var(--skin);
+    }
+
+    .stars {
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .review-text {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.9;
+      letter-spacing: 0.03em;
+      font-style: italic;
+    }
+
+    .reviewer {
+      font-size: 11px;
+      color: var(--sub);
+      letter-spacing: 0.1em;
+      margin-top: 24px;
+    }
+
+    .rating-big {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid var(--skin);
+    }
+    .rating-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 80px;
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1;
+    }
+    .rating-detail { font-size: 13px; color: var(--sub); }
+
+    /* ── BOOKING ── */
+    .booking {
+      background: linear-gradient(135deg, var(--skin) 0%, var(--beige) 50%, var(--cream) 100%);
+      text-align: center;
+      padding: 120px 80px;
+    }
+
+    .booking .section-label {
+      justify-content: center;
+    }
+    .booking .section-label::before { display: none; }
+    .booking .section-label::after {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--warm);
+    }
+
+    .booking .section-title {
+      margin-bottom: 20px;
+    }
+
+    .booking-desc {
+      font-size: 15px;
+      color: var(--sub);
+      margin-bottom: 48px;
+      letter-spacing: 0.05em;
+    }
+
+    .booking-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      color: var(--white);
+      background: var(--dark);
+      padding: 20px 56px;
+      text-decoration: none;
+      transition: all .3s ease;
+      position: relative;
+    }
+    .booking-btn:hover {
+      background: var(--brown);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(44,36,32,0.2);
+    }
+
+    .line-icon {
+      width: 20px;
+      height: 20px;
+      background: #06C755;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: white;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .booking-note {
+      font-size: 12px;
+      color: var(--sub);
+      margin-top: 24px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── INFO ── */
+    .info {
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+    }
+    .info-block {
+      padding: 60px 48px;
+      border-right: 1px solid var(--beige);
+    }
+    .info-block:last-child { border-right: none; }
+    .info-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 24px;
+      letter-spacing: 0.08em;
+    }
+    .info-item {
+      font-size: 13px;
+      color: var(--sub);
+      line-height: 2.2;
+      letter-spacing: 0.05em;
+    }
+    .info-highlight {
+      color: var(--warm);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      margin-top: 20px;
+      display: inline-block;
+      text-decoration: none;
+      border-bottom: 1px solid var(--sand);
+      padding-bottom: 2px;
+      transition: color .2s;
+    }
+    .info-highlight:hover { color: var(--brown); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 60px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--cream);
+    }
+    .footer-logo span { color: var(--gold); font-style: italic; }
+    .footer-tagline {
+      font-size: 11px;
+      color: var(--sub);
+      letter-spacing: 0.15em;
+      margin-top: 8px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 11px;
+      color: var(--sub);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(138,123,116,0.5);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 18px 32px; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-content { padding: 60px 32px 40px; }
+      .hero-visual { height: 60vw; min-height: 400px; }
+      .about { grid-template-columns: 1fr; padding: 60px 32px; gap: 40px; }
+      section { padding: 60px 32px; }
+      .services-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .feature-banner { grid-template-columns: 1fr; padding: 60px 32px; gap: 40px; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .info { grid-template-columns: 1fr; }
+      .info-block { border-right: none; border-bottom: 1px solid var(--beige); padding: 40px 32px; }
+      footer { flex-direction: column; gap: 32px; text-align: center; padding: 48px 32px; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      .booking { padding: 80px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">UG<span>LOW</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">關於我們</a></li>
+    <li><a href="#services">服務項目</a></li>
+    <li><a href="#reviews">顧客評價</a></li>
+    <li><a href="#info">聯絡資訊</a></li>
+  </ul>
+  <a href="https://line.me/R/ti/p/@554tilah?ts=09111909&oat_content=url" target="_blank" class="nav-cta">立即預約</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-content">
+    <div class="hero-tag">Taipei · 信義區 · 預約制</div>
+    <h1 class="hero-title">
+      科技保養<br>
+      <em>煥亮肌膚之美</em>
+    </h1>
+    <p class="hero-subtitle">臉部科技保養專門店</p>
+    <p class="hero-desc">
+      結合韓系皮膚管理技術與精準科技設備，<br>
+      為每一位客人打造量身訂製的肌膚管理方案。<br>
+      無痛清粉刺｜外泌體｜SEYO無針水光｜水飛梭
+    </p>
+    <div class="hero-actions">
+      <a href="https://line.me/R/ti/p/@554tilah?ts=09111909&oat_content=url" target="_blank" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        LINE 預約諮詢
+      </a>
+      <a href="#services" class="btn-outline">探索服務項目 →</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <img
+      src="./hero.jpg"
+      alt="UGLOW SEYO 水光儀 臉部科技保養"
+      class="hero-img"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    />
+    <div class="hero-img-fallback" style="display:none; position:absolute; inset:0; flex-direction:column; align-items:center; justify-content:center;">
+      <div style="font-family:'Cormorant Garamond',serif; font-size:60px; font-weight:300; color:var(--brown); opacity:0.4; letter-spacing:0.2em;">UGLOW</div>
+      <div style="font-size:13px; color:var(--sub); margin-top:12px; letter-spacing:0.15em;">臉部科技保養</div>
+    </div>
+    <div class="hero-badge">
+      <div class="num">5.0 <span class="stat-unit" style="font-size:18px;">★</span></div>
+      <div class="label">Google 評論</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span>無痛清粉刺</span>
+    <span>·</span>
+    <span>外泌體療程</span>
+    <span>·</span>
+    <span>SEYO 無針水光</span>
+    <span>·</span>
+    <span>空服員燈泡肌</span>
+    <span>·</span>
+    <span>水飛梭</span>
+    <span>·</span>
+    <span>皮膚管理</span>
+    <span>·</span>
+    <span>預約制服務</span>
+    <span>·</span>
+    <span>無痛清粉刺</span>
+    <span>·</span>
+    <span>外泌體療程</span>
+    <span>·</span>
+    <span>SEYO 無針水光</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text">
+    <div class="section-label">About UGLOW</div>
+    <h2 class="section-title">
+      追求精準深層<br>
+      <em>快速有效</em> 的科技保養
+    </h2>
+    <p>
+      UGLOW 採用預約制，讓每一位客人享受專屬的肌膚管理體驗。我們引進韓國頂尖皮膚管理技術，搭配 SEYO 無針水光儀等科技設備，實現精準、深層、有效的保養成效。
+    </p>
+    <p>
+      無論是困擾已久的粉刺問題、痘疤淡化，或是追求透亮水潤的燈泡肌，我們為您提供最適合的個人化療程。
+    </p>
+  </div>
+
+  <div class="about-stats">
+    <div class="stat-box">
+      <div class="stat-num">5.0<span class="stat-unit">★</span></div>
+      <div class="stat-label">Google 滿分好評</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">18<span class="stat-unit">則</span></div>
+      <div class="stat-label">真實顧客評論</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">100<span class="stat-unit">%</span></div>
+      <div class="stat-label">無痛清粉刺技術</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">SEYO</div>
+      <div class="stat-label">無針水光儀設備</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">Our Services</div>
+      <h2 class="section-title">專業服務<br><em>療程項目</em></h2>
+    </div>
+    <a href="https://line.me/R/ti/p/@554tilah?ts=09111909&oat_content=url" target="_blank" class="btn-outline" style="white-space:nowrap;">查詢療程詳情 →</a>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">✦</div>
+      <div class="service-num">01</div>
+      <div class="service-name">無痛清粉刺</div>
+      <p class="service-desc">採用專業技術，溫和不刺激地清除頑固粉刺，過程舒適無痛，讓毛孔重獲清潔。</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">◈</div>
+      <div class="service-num">02</div>
+      <div class="service-name">外泌體療程</div>
+      <p class="service-desc">頂尖再生科技，深層修復受損肌膚，促進膠原蛋白生成，有效改善痘疤與細紋。</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">◎</div>
+      <div class="service-num">03</div>
+      <div class="service-name">SEYO 無針水光</div>
+      <p class="service-desc">引進韓國 SEYO AP 無針水光儀，無創導入玻尿酸精華，打造水潤透亮的燈泡肌。</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">❋</div>
+      <div class="service-num">04</div>
+      <div class="service-name">水飛梭 · 皮膚管理</div>
+      <p class="service-desc">全方位皮膚管理，深度清潔毛孔同時導入活性精華，還原健康亮澤的肌膚狀態。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE BANNER -->
+<div class="feature-banner">
+  <div>
+    <div class="section-label">Why UGLOW</div>
+    <h2 class="section-title">為什麼選擇<br><em>UGLOW</em></h2>
+
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div class="feature-text">
+          <h4>預約制 · 專屬服務</h4>
+          <p>每次療程均為獨立包廂，確保每位客人得到最專注的個人化照護。</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div class="feature-text">
+          <h4>韓系皮膚管理技術</h4>
+          <p>引進韓國頂尖設備與技術，帶來與頂級韓國皮膚科相同水準的保養體驗。</p>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot"></div>
+        <div class="feature-text">
+          <h4>非侵入式改善痘疤</h4>
+          <p>無需侵入性療程，透過科技設備有效改善痘疤問題，安全有效。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="feature-right">
+    <blockquote>
+      「臉部保濕效果佳，清粉刺真的不會痛，最重要的非侵入式改善痘疤很有效果。」
+    </blockquote>
+    <cite>— Google 顧客評論 ★★★★★</cite>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="section-label">Customer Reviews</div>
+  <h2 class="section-title">真實顧客<br><em>評論回饋</em></h2>
+
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">「服務很好，注意小細節，體驗感很讚，推推！」</p>
+      <div class="reviewer">Google 評論 · 顧客 A</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">「臉部保濕效果佳。清粉刺真的不會痛👍👍 最重要的非侵入式改善痘疤很有效果。」</p>
+      <div class="reviewer">Google 評論 · 顧客 B</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">「專業且貼心的服務，療程後肌膚感覺煥然一新，值得推薦給想要改善膚質的朋友。」</p>
+      <div class="reviewer">Google 評論 · 顧客 C</div>
+    </div>
+  </div>
+
+  <div class="rating-big">
+    <div class="rating-num">5.0</div>
+    <div class="rating-detail">
+      ★★★★★<br>
+      <span style="color:var(--sub);">18 則 Google 評論</span>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="booking">
+  <div class="section-label">Book Now</div>
+  <h2 class="section-title" style="margin-bottom:20px;">立即預約<br><em>專屬療程</em></h2>
+  <p class="booking-desc">透過 LINE 與我們聯繫，為您安排最適合的肌膚管理方案</p>
+  <a href="https://line.me/R/ti/p/@554tilah?ts=09111909&oat_content=url" target="_blank" class="booking-btn">
+    <span class="line-icon">L</span>
+    LINE 預約諮詢
+  </a>
+  <p class="booking-note">預約制服務 · 請提前預約以確保您的專屬時段</p>
+</section>
+
+<!-- INFO -->
+<section class="info" id="info" style="padding:0;">
+  <div class="info-block">
+    <div class="info-title">地址</div>
+    <p class="info-item">
+      110 臺北市信義區<br>
+      永吉路 30 巷 178 弄 2 號 2 樓
+    </p>
+    <a href="https://maps.google.com" target="_blank" class="info-highlight">查看地圖 →</a>
+  </div>
+  <div class="info-block">
+    <div class="info-title">營業時間</div>
+    <p class="info-item">
+      週一 ～ 週日<br>
+      10:00 ～ 23:00<br>
+      <br>
+      週五、週六、日下午<br>
+      為熱門時段，建議提早預約
+    </p>
+  </div>
+  <div class="info-block">
+    <div class="info-title">預約方式</div>
+    <p class="info-item">
+      採預約制服務<br>
+      請透過 LINE 提前預約<br>
+      <br>
+      首次預約可透過 LINE<br>
+      諮詢適合的療程方案
+    </p>
+    <a href="https://line.me/R/ti/p/@554tilah?ts=09111909&oat_content=url" target="_blank" class="info-highlight">LINE 預約 @UGLOW →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">UG<span>LOW</span></div>
+    <div class="footer-tagline">臉部科技保養 · 信義區 · 預約制</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#about">關於我們</a></li>
+    <li><a href="#services">服務項目</a></li>
+    <li><a href="#reviews">顧客評價</a></li>
+    <li><a href="https://line.me/R/ti/p/@554tilah?ts=09111909&oat_content=url" target="_blank">LINE 預約</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 UGLOW · All Rights Reserved</div>
+</footer>
+
+</body>
+</html>
